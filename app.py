@@ -31,6 +31,11 @@ def func2():
     result = "結果:" + str(ivalue3)
     return render_template("index.html", output_message=result)
     
-
 if __name__ == '__main__':
-    app.run()
+    import os
+    HOST = os.environ.get('SERVER_HOST', 'localhost')
+    try:
+        PORT = int(os.environ.get('SERVER_PORT', '5555'))
+    except ValueError:
+        PORT = 5555
+    app.run(HOST, PORT)
